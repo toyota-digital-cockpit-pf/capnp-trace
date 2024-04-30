@@ -1,10 +1,8 @@
-# 👣 capnp_trace
-
-Cap'n Proto RPC tracer
+![Cap'n Proto RPC tracer](doc/logo.png)
 
 ## Abstract
 
-`capnp_trace` is a debug tool that intercepts and records Cap'n Proto RPC which are called by a process and receieved by a process.
+`capnp_trace` is a debug tool that intercepts and records Cap'n Proto RPC which are called by a process and received by a process.
 
 ## 💪 Features
 
