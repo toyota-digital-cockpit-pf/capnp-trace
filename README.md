@@ -19,6 +19,12 @@ Cap'n Proto RPC tracer
 
 ## 📥️ Installation
 
+```
+cmake -B build -S . -D CAPNP_TRACE_SCHEMA_DIRS="import_schema_dir1/;import_schema_dir2/"
+cmake --build build
+cmake --install build --prefix build/prefix
+```
+
 ## 🚀 Usage
 
 ## 📜 License

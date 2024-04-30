@@ -1,0 +1,18 @@
+#include "immutable_schema_registry.h"
+
+#include <capnp/schema-loader.h>
+
+@CAPNP_TRACE_INCLUDE_DIRECTIVES@
+
+namespace capnp_trace {
+
+static capnp::SchemaLoader loader;
+
+void ImmutableSchemaRegistry::Init() {
+@CAPNP_TRACE_LOAD_INTERFACES@
+}
+
+capnp::InterfaceSchema ImmutableSchemaRegistry::GetInterface(uint64_t id) {
+  return loader.get(id).asInterface();
+}
+}  // namespace capnp_trace

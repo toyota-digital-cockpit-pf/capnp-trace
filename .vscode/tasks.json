@@ -1,0 +1,120 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "cpplint",
+      "command": "cpplint",
+      "args": [
+        "--recursive",
+        "--quiet",
+        ".",
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "build"
+    },
+    {
+      "type": "shell",
+      "label": "cmake config",
+      "command": "cmake",
+      "args": [
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DBUILD_TESTS=ON",
+        "-DCAPNP_TRACE_SCHEMA_DIRS='import_schema_dir1/;import_schema_dir2/'",
+        "-B",
+        "${workspaceFolder}/build",
+        "-S",
+        "${workspaceFolder}",
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": "build",
+      "dependsOn": "cpplint"
+    },
+    {
+      "type": "shell",
+      "label": "cmake build",
+      "command": "cmake",
+      "args": [
+        "--build",
+        "${workspaceFolder}/build",
+        "--config",
+        "Debug",
+        "-j 4",
+        "--target",
+        "all",
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": "build",
+      "dependsOn": "cmake config"
+    },
+    {
+      "type": "shell",
+      "label": "cmake install",
+      "command": "cmake",
+      "args": [
+        "--install",
+        "${workspaceFolder}/build",
+        "--prefix",
+        "${workspaceFolder}/build/prefix",
+        "--config",
+        "Debug",
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "dependsOn": "cmake build"
+    },
+    {
+      "type": "shell",
+      "label": "ctest",
+      "command": [
+        "ctest",
+        "-V",
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/build"
+      },
+      "dependsOn": "cmake build",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "make clean",
+      "type": "shell",
+      "group": "build",
+      "options": {
+        "cwd": "${workspaceFolder}/build"
+      },
+      "command": [
+        "make"
+      ],
+      "args": [
+        "clean"
+      ],
+      "problemMatcher": "$gcc"
+    }
+  ]
+}
