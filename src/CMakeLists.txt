@@ -3,7 +3,7 @@ set(SCHEMA_DIR_INDEX 0)
 
 # Convert all capnp schemas in CAPNP_TRACE_SCHEMA_DIRS
 foreach(internal_schema_dir IN LISTS CAPNP_TRACE_SCHEMA_DIRS)
-  file(GLOB internal_capnp_trace_schemas ${internal_schema_dir}/*/*.capnp)
+  file(GLOB_RECURSE internal_capnp_trace_schemas ${internal_schema_dir}/*.capnp)
   set(CAPNPC_OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/schema_dir_${SCHEMA_DIR_INDEX}/")
   MATH(EXPR SCHEMA_DIR_INDEX "${SCHEMA_DIR_INDEX}+1")
   file(MAKE_DIRECTORY ${CAPNPC_OUTPUT_DIR})
