@@ -24,7 +24,7 @@
       "args": [
         "-DCMAKE_BUILD_TYPE=Debug",
         "-DBUILD_TESTS=ON",
-        "-DCAPNP_TRACE_SCHEMA_DIRS='import_schema_dir1/;import_schema_dir2/'",
+        "-DCAPNP_TRACE_SCHEMA_DIRS='test/;import_schema_dir1/;import_schema_dir2/'",
         "-B",
         "${workspaceFolder}/build",
         "-S",
