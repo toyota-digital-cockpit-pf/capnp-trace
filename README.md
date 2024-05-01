@@ -28,6 +28,30 @@ cmake --install build
 
 ## 🚀 Usage
 
+- `capnp_trace` has the following sub commands. If you need detail info for each sub-command, please see `capnp_trace <sub_command> --help`.
+
+```shell
+$ capnp_trace --help 
+Usage: capnp_trace [<option>...] <command> [<arg>...]
+
+Command-line tool for Cap'n Proto RPC tracing.
+
+Commands:
+  attach  Attach to the existing thread and trace it.
+  exec    Fork and exec new process and trace it.
+  parse   Parse recoreded/dumped files.
+
+See 'capnp_trace help <command>' for more information on a specific command.
+
+Options:
+    --verbose
+        Log informational messages to stderr; useful for debugging.
+    --version
+        Print version information and exit.
+    --help
+        Display this help text and exit.
+```
+
 ## 📜 License
 
 [MIT License](https://opensource.org/license/mit)
