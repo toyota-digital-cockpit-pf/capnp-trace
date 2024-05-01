@@ -3,9 +3,9 @@ project(capnp_trace CXX)
 set(CMAKE_CXX_STANDARD 14)
 
 option(BUILD_TESTS "Build tests" OFF)
-set(CAPNP_TRACE_SCHEMA_DIRS "" CACHE PATH "Where to look for additional Cap'n Proto schema files (can be ;-separated list of paths)")
+set(CAPNP_TRACE_SCHEMA_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/test/" CACHE PATH "Where to look for additional Cap'n Proto schema files (can be ;-separated list of paths)")
 if("x${CAPNP_TRACE_SCHEMA_DIRS}" STREQUAL "x")
-  message(FATAL_ERROR "CAPNP_TRACE_SCHEMA_DIRS must be specified")
+  message(WARNING "CAPNP_TRACE_SCHEMA_DIRS is not specified. Mesage deserialization is not supported.")
 endif()
 find_package(CapnProto REQUIRED)
 
