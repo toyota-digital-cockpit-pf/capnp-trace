@@ -1,8 +1,8 @@
 ![Cap'n Proto RPC tracer](doc/logo.png)
 
-## Abstract
-
 `capnp_trace` is a debug tool that intercepts and records Cap'n Proto RPC which are called by a process and received by a process.
+
+![demo](doc/demo.gif)
 
 ## 💪 Features
 
@@ -17,10 +17,13 @@
 
 ## 📥️ Installation
 
-```
-cmake -B build -S . -D CAPNP_TRACE_SCHEMA_DIRS="import_schema_dir1/;import_schema_dir2/"
+`capnp_trace` needs to be built with your Cap'n Proto schemas to deserialize.  
+If you don't specify `CAPNP_TRACE_SCHEMA_DIRS`, `capnp_trace` can record, but cannot deserialize message.  
+
+```shell
+cmake -B build -S . -D CAPNP_TRACE_SCHEMA_DIRS="<YOUR-SCHEMA-DIRECTORY1>;<YOUR-SCHEMA-DIRECTORY2>"
 cmake --build build
-cmake --install build --prefix build/prefix
+cmake --install build
 ```
 
 ## 🚀 Usage
