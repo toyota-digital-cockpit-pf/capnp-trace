@@ -35,7 +35,7 @@
 
 namespace capnp_trace {
 
-static const char VERSION_STRING[] = "capnp_trace v0.0.1";
+static const char VERSION_STRING[] = "capnp_trace v0.1.0";
 
 static inline std::string GetTimeStamp() {
   struct timespec tp;
