@@ -1,6 +1,6 @@
 BEGIN {
   # Set field seperator
-  FS="[{} \"]"
+  FS="[{} \"]*"
 }
 
 FNR == 1 {
