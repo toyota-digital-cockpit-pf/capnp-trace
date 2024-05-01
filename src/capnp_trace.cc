@@ -412,9 +412,9 @@ class TraceMain final {
 
     KJ_IF_MAYBE (injection, injection_) {
       // When injection condition is satisfied, send SIGKILL to tracee process.
-      injection->Check(method_name, [injection, pid = pid_]() {
+      injection->Check(method_name, [injection, pid = pid_](int sig) {
         KJ_LOG(WARNING, *injection, "fired");
-        kill(pid, SIGKILL);
+        kill(pid, sig);
         exit(EXIT_SUCCESS);
       });
     }
