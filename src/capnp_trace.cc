@@ -393,7 +393,15 @@ class TraceMain final {
         printed_fields.add(kj::strTree(field.getProto().getName(), " = <external capability>"));
         continue;
       }
-      printed_fields.add(kj::strTree(field.getProto().getName(), " = ", value.get(field)));
+      kj::String field_value;
+      auto maybe_exception = kj::runCatchingExceptions([&value, &field, &field_value](){
+        field_value = kj::str(value.get(field));
+      });
+      KJ_IF_MAYBE(exception, maybe_exception) {
+        KJ_LOG(INFO, exception);
+        field_value = kj::str("<external capability>");
+      }
+      printed_fields.add(kj::strTree(field.getProto().getName(), " = ", field_value));
     }
 
     return kj::str("(", kj::StringTree(printed_fields.releaseAsArray(), ", "), ")");
